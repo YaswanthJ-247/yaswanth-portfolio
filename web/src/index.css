@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color-scheme: light;
+  background-color: #f8fafc;
+}
+
+:root.dark {
+  color-scheme: dark;
+  background-color: #020617;
+}
+
+* {
+  @apply scroll-smooth;
+}
+
+body {
+  @apply min-h-screen bg-[#f6f7fb] text-slate-900 antialiased;
+  background: radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.08), transparent 32%),
+    radial-gradient(circle at 80% 0%, rgba(59, 130, 246, 0.08), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9));
+}
+
+.dark body {
+  @apply bg-slate-950 text-slate-100;
+  background: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.12), transparent 30%),
+    radial-gradient(circle at 80% 0%, rgba(59, 130, 246, 0.12), transparent 32%),
+    linear-gradient(180deg, rgba(4, 6, 26, 0.94), rgba(8, 14, 36, 0.9));
+}
+
+::selection {
+  background: rgba(14, 165, 233, 0.15);
+  color: inherit;
+}
+
+a {
+  @apply transition-colors duration-200;
+}
+
+.section-card {
+  @apply relative overflow-hidden rounded-3xl border border-white/60 bg-white shadow-xl shadow-slate-200/50 transition-transform duration-300 ease-out dark:border-white/10 dark:bg-white/5 dark:shadow-glass;
+}
+
+.surface {
+  @apply relative overflow-hidden rounded-3xl border border-white/60 bg-white shadow-xl shadow-slate-200/50 transition-transform duration-300 ease-out dark:border-white/10 dark:bg-white/5 dark:shadow-glass;
+}
+
+.pill {
+  @apply inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/80 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-slate-700 shadow-sm backdrop-blur-sm dark:border-white/5 dark:bg-white/10 dark:text-slate-100;
+}
+
+.grid-overlay-light {
+  background-size: 32px 32px;
+  background-image: linear-gradient(to right, rgba(148, 163, 184, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.15) 1px, transparent 1px);
+}
+
+.grid-overlay-dark {
+  background-size: 32px 32px;
+  background-image: linear-gradient(to right, rgba(148, 163, 184, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.15) 1px, transparent 1px);
+  opacity: 0.25;
+}
+
+.glass-hover {
+  @apply transition duration-300 ease-out hover:-translate-y-1 hover:border-brand-300/40 hover:shadow-glow hover:shadow-brand-500/20 hover:backdrop-blur-lg dark:hover:border-white/20;
+}
+
+.tag {
+  @apply rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 shadow-inner dark:bg-white/10 dark:text-slate-100;
+}
+
+.fade-border {
+  position: relative;
+}
+
+.fade-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.35), rgba(248, 113, 113, 0.25));
+  -webkit-mask: linear-gradient(#000, #000) content-box, linear-gradient(#000, #000);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.backdrop-gradient {
+  background: radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.12), transparent 35%),
+    radial-gradient(circle at 80% 10%, rgba(248, 113, 113, 0.12), transparent 30%),
+    radial-gradient(circle at 60% 70%, rgba(16, 185, 129, 0.12), transparent 25%);
+}
+
+.dark .backdrop-gradient {
+  background: radial-gradient(circle at 20% 20%, rgba(125, 211, 252, 0.14), transparent 35%),
+    radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.08), transparent 30%),
+    radial-gradient(circle at 60% 70%, rgba(45, 212, 191, 0.14), transparent 25%);
+}
+
+.floating-dots {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(14, 165, 233, 0.18) 1px, transparent 0);
+  opacity: 0.45;
+}
+
+.dark .floating-dots {
+  background-image: radial-gradient(rgba(148, 163, 184, 0.35) 1px, transparent 0);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.tech-marquee {
+  @apply relative overflow-hidden;
+}
+
+.tech-marquee__track {
+  @apply flex gap-3 py-3;
+  min-width: 200%;
+  animation: marquee 14s linear infinite;
+}
+
+.tech-chip {
+  @apply inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-700 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/10 dark:text-slate-200;
+}
+
+.hero-stat {
+  @apply rounded-2xl border border-slate-100 bg-white px-4 py-3 text-left shadow-sm shadow-slate-200/50 dark:border-white/10 dark:bg-white/5;
+}
+
+.highlight-tile {
+  @apply rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-sm text-white;
+}
+
+.project-card {
+  @apply relative overflow-hidden border border-slate-100 bg-white shadow-xl shadow-slate-200/60 backdrop-blur dark:border-white/10 dark:bg-gradient-to-br dark:from-slate-900 dark:via-slate-950 dark:to-slate-900;
+}
+
+.project-index {
+  @apply absolute left-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-sky-600 text-sm font-semibold text-white shadow-lg backdrop-blur dark:bg-white/10;
+}
+
+.timeline {
+  @apply relative space-y-6;
+}
+
+.timeline::before {
+  content: '';
+  @apply absolute left-4 top-0 h-full w-px bg-gradient-to-b from-transparent via-slate-200 to-transparent dark:via-white/10;
+}
+
+.timeline-item {
+  @apply relative pl-10;
+}
+
+.timeline-item::before {
+  content: '';
+  @apply absolute left-[10px] top-3 h-3 w-3 rounded-full bg-brand-500 shadow-[0_0_0_6px_rgba(14,165,233,0.15)];
+}
