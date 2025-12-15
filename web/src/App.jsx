@@ -35,6 +35,10 @@ import {
 import maLogo from "./assets/Medical-Advisor-Logo.png";
 import tfgLogo from "./assets/TFG-Logo.png";
 import splashGif from "./assets/ma-splash-screen.gif";
+import GClogo from "./assets/GroConnect-Logo.png";
+import Glance from "./assets/GroConnect-glance.png";
+import pothumb from "./assets/yash-portfolio-logo.png";
+import liglance from "./assets/yash-linkedin-glance.png";
 
 const navItems = [
   { href: '#about', label: 'About' },
@@ -100,10 +104,10 @@ const projects = [
     link: 'https://play.google.com/store/apps/details?id=com.tfg.medicaladvisor&pcampaignid=web_share',
     github: '',
     thumbnail:
-      'maLogo',
+      maLogo,
     screenshots: [
-      'tfgLogo',
-      'src/assets/ma-splash-screen.gif',
+      tfgLogo,
+      splashGif,
     ],
   },
   {
@@ -119,10 +123,10 @@ const projects = [
     link: 'https://www.groconnect.in',
     github: '',
     thumbnail:
-      'src/assets/GroConnect-Logo.png',
+      GClogo,
     screenshots: [
-      'tfgLogo',
-      'src/assets/GroConnect-glance.png',
+      tfgLogo,
+      Glance,
     ],
   },
   {
@@ -156,10 +160,10 @@ const projects = [
     link: '#',
     github: '#',
     thumbnail:
-      'src/assets/yash-portfolio-logo.png',
+      pothumb,
     screenshots: [
       'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=80',
-      'src/assets/yash-linkedin-glance.png',
+      liglance,
     ],
   },
 ]
