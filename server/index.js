@@ -24,12 +24,23 @@ const {
 } = process.env
 
 const app = express()
-const defaultOrigins = ['https://yaswanthj-247.github.io', 'http://localhost:5173']
+const defaultOrigins = ['https://yaswanthj-247.github.io']
 const configuredOrigins = ALLOW_ORIGIN
   ? ALLOW_ORIGIN.split(',').map((o) => o.trim()).filter(Boolean)
   : []
 const origins = configuredOrigins.length ? configuredOrigins : defaultOrigins
-app.use(cors({ origin: origins }))
+
+// CORS must be before routes
+app.use(
+  cors({
+    origin: origins,
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  }),
+)
+app.options('*', cors())
+
+app.use(express.json())
 app.use(bodyParser.json())
 
 // Initialize Firebase Admin
