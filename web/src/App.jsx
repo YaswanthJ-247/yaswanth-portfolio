@@ -100,9 +100,9 @@ const projects = [
     link: 'https://play.google.com/store/apps/details?id=com.tfg.medicaladvisor&pcampaignid=web_share',
     github: '',
     thumbnail:
-      'src/assets/Medical-Advisor-Logo.png',
+      'maLogo',
     screenshots: [
-      'src/assets/TFG-Logo.png',
+      'tfgLogo',
       'src/assets/ma-splash-screen.gif',
     ],
   },
@@ -121,7 +121,7 @@ const projects = [
     thumbnail:
       'src/assets/GroConnect-Logo.png',
     screenshots: [
-      'src/assets/TFG-Logo.png',
+      'tfgLogo',
       'src/assets/GroConnect-glance.png',
     ],
   },
