@@ -32,6 +32,10 @@ import {
   SiMysql,
 } from 'react-icons/si'
 
+import maLogo from "./assets/Medical-Advisor-Logo.png";
+import tfgLogo from "./assets/TFG-Logo.png";
+import splashGif from "./assets/ma-splash-screen.gif";
+
 const navItems = [
   { href: '#about', label: 'About' },
   { href: '#projects', label: 'Projects' },
