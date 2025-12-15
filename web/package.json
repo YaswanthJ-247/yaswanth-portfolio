@@ -9,6 +9,8 @@
     "build": "ROLLUP_USE_BUNDLED=true vite build",
     "lint": "eslint .",
     "preview": "ROLLUP_USE_BUNDLED=true vite preview"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@rollup/rollup-darwin-arm64": "^4.53.3",
