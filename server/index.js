@@ -9,9 +9,11 @@ import nodemailer from 'nodemailer'
 dotenv.config()
 
 const {
-  ALLOW_ORIGIN = '*',
+  ALLOW_ORIGIN = '',
   PORT = 4000,
   FIREBASE_CREDENTIAL_PATH = './serviceAccountKey.json',
+  FIREBASE_SERVICE_ACCOUNT_JSON,
+  FIREBASE_PROJECT_ID,
   RECAPTCHA_SECRET,
   SMTP_HOST,
   SMTP_PORT,
@@ -22,22 +24,41 @@ const {
 } = process.env
 
 const app = express()
-app.use(cors({ origin: ALLOW_ORIGIN.split(',').map((o) => o.trim()) || '*' }))
+const defaultOrigins = ['https://yaswanthj-247.github.io', 'http://localhost:5173']
+const configuredOrigins = ALLOW_ORIGIN
+  ? ALLOW_ORIGIN.split(',').map((o) => o.trim()).filter(Boolean)
+  : []
+const origins = configuredOrigins.length ? configuredOrigins : defaultOrigins
+app.use(cors({ origin: origins }))
 app.use(bodyParser.json())
 
 // Initialize Firebase Admin
-if (!fs.existsSync(FIREBASE_CREDENTIAL_PATH)) {
-  console.warn(`Firebase credential file not found at ${FIREBASE_CREDENTIAL_PATH}. Firestore writes will fail until provided.`)
-}
-
-try {
-  const serviceAccount = JSON.parse(fs.readFileSync(FIREBASE_CREDENTIAL_PATH, 'utf8'))
-  admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-  })
-  console.log('Firebase Admin initialized')
-} catch (err) {
-  console.error('Failed to initialize Firebase Admin. Provide a valid serviceAccountKey.json.', err.message)
+if (!admin.apps.length) {
+  try {
+    if (FIREBASE_SERVICE_ACCOUNT_JSON) {
+      const serviceAccount = JSON.parse(FIREBASE_SERVICE_ACCOUNT_JSON)
+      admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount),
+        projectId: FIREBASE_PROJECT_ID || serviceAccount.project_id,
+      })
+      console.log('Firebase Admin initialized via FIREBASE_SERVICE_ACCOUNT_JSON')
+    } else if (fs.existsSync(FIREBASE_CREDENTIAL_PATH)) {
+      const serviceAccount = JSON.parse(fs.readFileSync(FIREBASE_CREDENTIAL_PATH, 'utf8'))
+      admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount),
+        projectId: FIREBASE_PROJECT_ID || serviceAccount.project_id,
+      })
+      console.log('Firebase Admin initialized via credential file')
+    } else {
+      admin.initializeApp({
+        credential: admin.credential.applicationDefault(),
+        projectId: FIREBASE_PROJECT_ID,
+      })
+      console.log('Firebase Admin initialized via applicationDefault')
+    }
+  } catch (err) {
+    console.error('Failed to initialize Firebase Admin.', err.message)
+  }
 }
 
 const db = admin.apps.length ? admin.firestore() : null

@@ -445,7 +445,7 @@ function App() {
   const [formStatus, setFormStatus] = useState({ state: 'idle', message: '' })
   const [lightbox, setLightbox] = useState(null)
   const [recaptchaReady, setRecaptchaReady] = useState(false)
-  const apiBase = import.meta.env.VITE_API_BASE || 'http://localhost:4000'
+  const apiBase = import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE || 'http://localhost:4000'
   const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY
 
   useEffect(() => {
